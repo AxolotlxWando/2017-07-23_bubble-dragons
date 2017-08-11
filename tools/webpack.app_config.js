@@ -44,6 +44,8 @@ const dependencyPlatforms = {
   "dataloader": "server",
   "expo": ["ios", "android"],
   "express": "server",
+  "axios": "client",
+  "multer": "server",
   "graphql-server-express": "server",
   "graphql-subscriptions": "server",
   "graphql-tools": "server",

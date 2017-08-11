@@ -5,6 +5,8 @@ import path from 'path';
 import http from 'http';
 import { invert, isArray } from 'lodash';
 import url from 'url';
+import mime from 'mime-types';
+import crypto from 'crypto';
 // eslint-disable-next-line import/no-unresolved, import/no-extraneous-dependencies, import/extensions
 import queryMap from 'persisted_queries.json';
 
@@ -12,6 +14,8 @@ import websiteMiddleware from './middleware/website';
 import graphiqlMiddleware from './middleware/graphiql';
 import graphqlMiddleware from './middleware/graphql';
 import addGraphQLSubscriptions from './api/subscriptions';
+import multer from 'multer';
+
 import settings from '../../settings';
 import log from '../common/log';
 
@@ -32,6 +36,65 @@ if (__DEV__) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './assets/uploads/')
+  },
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+    });
+  }
+})
+var upload = multer({ storage: storage });
+// app.post('/upload', upload.array('files', 12), function (req, res, next) {})
+
+app.post('/upload', function (req, res) {
+  upload.array('files', 12)(req, res, function (err) {
+    console.log(JSON.stringify(req.files));
+    if (err) {
+      // An error occurred when uploading
+      console.log('multer error: ' + err)
+      res.sendStatus(400);
+      return
+    }
+
+    let fileReferences = []
+    console.log('Logging uploaded files: ');
+    console.log('req.files: ' + req.files);
+    console.log('req.files.length: ' + req.files.length);
+    for (var i = 0; i < req.files.length; i++) {
+      console.log('  ' + req.files[i].size);
+      console.log('  ' + req.files[i].originalname.name);
+      console.log('  ' + Object.keys(req.files[i]));
+      console.log('  ' + req.files[i].originalname.constructor.name);
+      console.log('  ' + JSON.stringify(req.files[i].originalname));
+      console.log('  ' + req.files[i].originalname == '[object File]')
+      fileReferences.push({
+        originalFilename: req.files[i].originalname,
+        fsFilename: req.files[i].filename
+      })
+      console.log(fileReferences[i])
+      console.log(fileReferences[i].originalFilename);
+      console.log(fileReferences[i].fsFilename);
+    }
+    console.log('Additional info attached: ');
+    for (var i = 0; i < req.body.length; i++) {
+      console.log('  ' + req.body[i]);
+    }
+    res.json({
+      message: 'Files uploaded',
+      fileReferences
+    })
+    console.log('Response: ', JSON.stringify({
+      message: 'Files uploaded',
+      fileReferences
+    }));
+  })
+})
+
+app.use('/uploads', express.static('assets/uploads'));
 
 app.use('/', express.static(path.join(settings.frontendBuildDir, 'web'), { maxAge: '180 days' }));
 
