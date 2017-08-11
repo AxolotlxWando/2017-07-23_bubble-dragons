@@ -69,7 +69,7 @@ class PostEdit extends React.Component {
 
     if (loading) {
       return (
-        <PageLayout>
+        <PageLayout stockExample>
           {this.renderMetaData()}
           <div>
             Loading...
@@ -78,7 +78,7 @@ class PostEdit extends React.Component {
       );
     } else {
       return (
-        <PageLayout>
+        <PageLayout stockExample>
           {this.renderMetaData()}
           <Link id="back-button" to="/posts">Back</Link>
           <h2>Edit Post</h2>

@@ -1,4 +1,4 @@
-import { merge, map, union, without, castArray } from 'lodash';
+import { merge, map, union, without, castArray, forOwn } from 'lodash';
 
 const combine = (features, extractor) =>
   without(union(...map(features, res => castArray(extractor(res)))), undefined);

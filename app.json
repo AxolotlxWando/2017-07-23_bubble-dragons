@@ -4,7 +4,7 @@
     "frontendBuildDir": "build/client",
     "dllBuildDir": "build/dll",
     "webpackDevPort": 3000,
-    "backendUrl": "http://{ip}:8080/graphql",
+    "backendUrl": "http://{ip}:10083/graphql",
     "ssr": true,
     "webpackDll": true,
     "frontendRefreshOnBackendChange": true,
@@ -18,7 +18,7 @@
     "ios": false,
     "env": {
       "production": {
-        "backendUrl": "http://localhost:8080/graphql"
+        "backendUrl": "http://localhost:10083/graphql"
       }
     }
   },

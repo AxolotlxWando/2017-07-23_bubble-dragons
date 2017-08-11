@@ -15,7 +15,7 @@ const Footer = styled.footer`
   height: ${footerHeight};
 `;
 
-const Page = ({children, navBar}) => {
+const Page = ({stockExample, children, navBar}) => {
   return (
     <section>
       {navBar !== false && <NavBar />}
@@ -24,7 +24,11 @@ const Page = ({children, navBar}) => {
       </Container>
       <Footer>
         <div className="text-center">
-          &copy; 2017. Example Apollo App.
+          {
+            stockExample
+              ? "\u00A9 2017. Example Apollo App."
+              : "\u00A9 2017. bubble-dragons.com"
+          }
         </div>
       </Footer>
     </section>
@@ -33,7 +37,8 @@ const Page = ({children, navBar}) => {
 
 Page.propTypes = {
   children: PropTypes.node,
-  navBar: PropTypes.bool
+  navBar: PropTypes.bool,
+  stockExample: PropTypes.bool
 };
 
 export default Page;

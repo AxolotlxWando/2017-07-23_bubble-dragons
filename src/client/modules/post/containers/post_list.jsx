@@ -146,7 +146,7 @@ class PostList extends React.Component {
 
     if (loading && !postsQuery) {
       return (
-        <PageLayout>
+        <PageLayout stockExample>
           {this.renderMetaData()}
           <div>
             Loading...
@@ -155,7 +155,7 @@ class PostList extends React.Component {
       );
     } else {
       return (
-        <PageLayout>
+        <PageLayout stockExample>
           {this.renderMetaData()}
           <h2>Posts</h2>
           <Link to="/post/add">
