@@ -51,6 +51,7 @@ const dependencyPlatforms = {
   "immutability-helper": ["ios", "android", "web"],
   "isomorphic-fetch": "server",
   "knex": "server",
+  "multer": "server",
   "persistgraphql": ["server", "web"],
   "performance-now": "server",
   "react-dom": "web",
