@@ -8,7 +8,7 @@ const NavBar = () => (
   <Navbar color="faded" light>
     <Container>
       <Row className="align-items-center">
-        <Link to="/" className="navbar-brand">Apollo Starter Kit</Link>
+        <Link to="/" className="navbar-brand">Bubble Dragons</Link>
         <Nav>
           {modules.navItems}
         </Nav>
