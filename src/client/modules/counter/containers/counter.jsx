@@ -59,7 +59,7 @@ class Counter extends React.Component {
     const { loading, count, addCount, reduxCount, onReduxIncrement } = this.props;
 
     return (
-      <PageLayout>
+      <PageLayout isStockExample>
         <CounterShow
           loading={loading}
           count={count}

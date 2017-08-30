@@ -28,7 +28,7 @@ class PostAdd extends React.Component {
 
   render() {
     return (
-      <PageLayout>
+      <PageLayout isStockExample>
         {this.renderMetaData()}
         <Link to="/posts">Back</Link>
         <h2>Create Post</h2>
