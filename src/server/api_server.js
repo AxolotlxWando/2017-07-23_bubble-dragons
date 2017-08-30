@@ -11,6 +11,8 @@ import queryMap from 'persisted_queries.json';
 import websiteMiddleware from './middleware/website';
 import graphiqlMiddleware from './middleware/graphiql';
 import graphqlMiddleware from './middleware/graphql';
+import uploadMiddleware from './middleware/upload';
+
 import addGraphQLSubscriptions from './api/subscriptions';
 import settings from '../../settings';
 import log from '../common/log';
@@ -67,6 +69,9 @@ if (__PERSIST_GQL__) {
 app.use(pathname, (...args) => graphqlMiddleware(...args));
 app.use('/graphiql', (...args) => graphiqlMiddleware(...args));
 app.use((...args) => websiteMiddleware(queryMap)(...args));
+
+app.post('/api/upload', uploadMiddleware);
+app.use('/uploads', express.static('/public/uploads'));
 
 server = http.createServer(app);
 
