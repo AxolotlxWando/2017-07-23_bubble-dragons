@@ -37,7 +37,7 @@ const Page = ({children, navBar, isStockExample}) => {
 
 Page.propTypes = {
   children: PropTypes.node,
-  navBar: PropTypes.bool
+  navBar: PropTypes.bool,
   isStockExample: PropTypes.bool
 };
 
