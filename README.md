@@ -34,7 +34,7 @@ flattened timeline right now.
 - Create boilerplate-raw branch (orphan)
 
 - Pull in boilerplate into boilerplate-raw from boilerplate remote - history
-  for the boilerplate-raw branch will now base on the external boilerplate project 
+  for the boilerplate-raw branch will now base on the external boilerplate project
 
 - Create master, perform a empty initial commit
 
@@ -186,6 +186,41 @@ Actual work:
 After this happens, proper history and a explicit record of all modifications
 to the boilerplate as own project requires it to be will be kept in boilerplate-local.
 
+This is completed (the initial baseline to be specific, new requirements will cause
+new modification to boilerplate-raw on boilerplate-local). A summary to what has
+been done:
+
+```
+73f24862048c942afefe8194c6ec7f9f99c5309a Fix upload middleware and /uploads/ endpoint not getting mounted issue (moving to before website middleware)
+c8bc033b3398cd98fff472fdac9b9d4b10c2f9bc Fix path to uploaded files at /uploads endpoint (public/uploads to public/assets/uploads)
+8af4a35b812774585e7f9debc1db163c7908c55d Fix and improve logging messages in upload.js middleware
+7c0f9d563e568bd68a529b51b3b31c495635eb13 Fix multer storage path in upload.js middleware (from assets/uploads to public/assets/uploads)
+028044c2005322e3fbfe312f7684b253c5935bc4 Fix reference to common logging module in upload.js middleware
+72e7d53b84aaef4f5b846bbaad9bb5c25dedfa19 Fix path to uploaded files (remove leading slash that made path absolute)
+08a44e829427b9ff9255806dfd59964422fbaa02 Create upload middleware mounting at route /api/upload
+5d90cf12d5f58a271a4946bef3e5c843dcc5fa79 Fix wrong gitignore entry - do track /assets/ folder, do not track /public/ folder
+f85d5d0143d52a51c9be54ccc3a3ba4104ef35da Bump up installed packages' version, yarn.lock (2017-08-30)
+e52a761ad12b6dae6c61e5589f2d3a7112937911 Refactor redux_store.js for readability and add redux-thunk middleware to createReduxStore()
+42d1b1bb01259056496139374a6ee49306f49e4e Remove counter module from root route and move it to it's own route with it's own nav item (project has to fill the absent component for the default route /)
+4b5fd35ab1b43d48a5ab88564036caffe599e699 Fix missing comma in container propTypes check in page_layout.jsx
+3e887f18f356185227f3deffe7e548938659fd3d Add feature to conditionally check and display coresponding copyright notice in foodbar for project pages and stock examples (to page_layout.jsx, counter.jsx, post_add.jsx, post_edit.jsx, post_list.jsx)
+3efff8b1c885e3c7c3efc5c216f7983a84106860 Modify page title in nav_bar.jsx to reflect project name
+64dfe984420b2966dcddb69b408b793c4dafd75a Update webpack.app_config to include multer only in server bundles
+7b9e0da5882ec18edab71c49b932a04b2a21528c Update package.json dependencies to include redux-thunk (file-upload, network and middleware related)
+ae835ed060de6920d3cbe0738c54780313b27d97 Update package.json dependencies to include multer (file-upload related)
+0e267e9967fc65df8f39f180dee2385274fa8032 Update package.json dependencies to include mime-types (file-upload related)
+9b50add317431cc80600918eb74781e6ab41694e Update .gitignore to ignore the assets folder
+306afa4d4eec9f0e79629f6d4ab93eff10bad529 Remove project related file README.md from starter kit
+8942d50d992043e761483de1ed9323e274866314 Pull in intial copy of boilerplate for project use, version was based on d8510d01aa1df8e4172746ff6d5755636508c9fa, latest version as of 2017 July 22nd"
+74534708fe713d89b7f634eac911ef3ff19490be Initial commit
+```
+
 ## 4.4 Recommiting project work back to master
 And project history will contain only project related work.
 
+This is tested on the development branch in one big commit. No effort is likely
+going to be invested to maintain a more granular history.
+
+# 5 Clean up project - Moving on to usual project development process
+Original goals are met now, moving on to improving photo gallery, uploads feature
+and experiments wanting to do such as screen sizes and page layout, pixels editor.
